@@ -1,0 +1,54 @@
+{% extends "share_view/base.html" %}
+{% block title %}Dịch tự động{% endblock %}
+{% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{{ form.non_field_errors }}
+<div id="wrapper">
+
+    <div class="paper">
+        {{ form.data_infer.errors }}
+        {% csrf_token %}
+        {{ form.data_infer }}
+        <br>
+        <input id="button" type="submit" value="Translate">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="paper">
+        <div id="margin">Result:</div>
+        <textarea disabled id="translated" name="translated" rows="4"
+                  style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#title').focus();
+  $('#button').on('click', function(){
+    infer = $("#text").val();
+    $.ajax({
+        url: "ajax/getVal",
+        type: "GET",
+        data: {
+            'infer': infer
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if (data.trans == null) {
+                $("#translated").val("Not found");
+            }else{
+                $("#translated").val(data.trans);
+            }
+        }
+    })
+  })
+  $('#text').autosize();
+  $('#translated').autosize();
+});
+
+
+</script>
+{% endblock %}

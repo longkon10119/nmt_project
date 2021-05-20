@@ -1,0 +1,21 @@
+{% extends "share_view/base.html" %}
+{% block title %}Trang chủ{% endblock %}
+{% block content %}
+<div class="text-white">BLEU analysis</div>
+<button aria-expanded="false"  class="btn btn-outline-danger"
+        data-toggle="collapse" data-target="#boxnoidung">Test 120 câu</button>
+
+<div class="collapse mt-4" id="boxnoidung">
+    <div class="card card-body bg-warning">
+        <img src="/static/images/bleu1.png" height="80%"/>
+    </div>
+</div>
+<button aria-expanded="false"  class="btn btn-outline-danger"
+        data-toggle="collapse" data-target="#boxnoidung1">Test 50000 câu</button>
+
+<div class="collapse mt-4" id="boxnoidung1">
+    <div class="card card-body bg-warning">
+        <img src="/static/images/bleu2.png" height="80%"/>
+    </div>
+</div>
+{% endblock %}

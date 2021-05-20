@@ -1,0 +1,1 @@
+web: gunicorn nmt_project.wsgi
